@@ -1,0 +1,55 @@
+[project]
+name = "gs-batch-pdf"
+version = "0.6.5"
+description = "cli tool wrapper for manipulating multiple pdfs file in parallel using ghostscript (compressing, convert to pdfa, etc.)"
+authors = [{ name = "kompre", email = "s.follador@gmail.com" }]
+requires-python = ">=3.12"
+readme = "README.md"
+license = "MIT"
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "click>=8.1.7",
+    "tqdm>=4.66.5,<5",
+    "show-in-file-manager>=1.1.5,<2",
+]
+
+[project.urls]
+Homepage = "https://github.com/kompre/gs-batch"
+Issue = "https://github.com/kompre/gs-batch/issues"
+
+[project.scripts]
+gs_batch = "gs_batch.gs_batch:gs_batch"
+gsb = "gs_batch.gs_batch:gs_batch"
+
+[dependency-groups]
+dev = [
+    "ipykernel>=6.29.5,<7",
+    "mypy>=1.18.2",
+    "pytest>=8.3.3,<9",
+    "types-tqdm>=4.67.0.20250809",
+]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "gs_batch",
+    "gs_batch/assets/*",
+]
+
+[tool.hatch.build.targets.wheel]
+include = [
+    "gs_batch",
+    "gs_batch/assets/*",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.mypy]
+python_version = "3.13"
+warn_return_any = true
+warn_unused_configs = true
+check_untyped_defs = true
